@@ -102,6 +102,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    @Transactional
     public UserResponseDTO updateUser(UUID userId, UpdateUserDTO updateUserDTO) {
         User user = findUserById(userId);
 
@@ -117,6 +118,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    @Transactional
     public UserResponseDTO addRoles(UUID userId, UserRoleModificationDTO userRoleModificationDTO) {
         User user = findUserById(userId);
         Set<Role> roles = user.getRoles();
@@ -133,6 +135,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    @Transactional
     public UserResponseDTO removeRoles(UUID userId, UserRoleModificationDTO userRoleModificationDTO) {
         User user = findUserById(userId);
         Set<Role> roles = user.getRoles();
@@ -148,6 +151,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    @Transactional
     public void deleteUser(UUID userId) {
         if (!userRepository.existsById(userId)) {
             throw new BadRequestException("User not found");

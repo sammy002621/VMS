@@ -16,6 +16,7 @@ import com.sammy.vehiclemanagementsystem.repositories.IUserRepository;
 import com.sammy.vehiclemanagementsystem.services.IOwnerService;
 import com.sammy.vehiclemanagementsystem.services.IRoleService;
 import com.sammy.vehiclemanagementsystem.utils.helpers.OwnerHelper;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -103,6 +104,7 @@ public class OwnerServiceImpl implements IOwnerService {
 
 
     @Override
+    @Transactional
     public Owner updateOwner(UUID id, UpdateOwnerDTO dto) {
         Owner owner = getOwnerById(id);
         User profile = owner.getProfile();
