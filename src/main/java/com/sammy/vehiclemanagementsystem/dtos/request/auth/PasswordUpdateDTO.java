@@ -1,7 +1,5 @@
 package com.sammy.vehiclemanagementsystem.dtos.request.auth;
-
-
-import com.sammy.vehiclemanagementsystem.annotations.password.ValidPassword;
+import com.sammy.vehiclemanagementsystem.annotations.user.password.ValidPassword;
 import lombok.Data;
 
 @Data

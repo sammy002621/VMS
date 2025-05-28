@@ -1,9 +1,9 @@
 package com.sammy.vehiclemanagementsystem.utils.helpers;
 
-import com.sammy.vehiclemanagementsystem.repositories.IVehicleRepository;
+import com.sammy.vehiclemanagementsystem.exceptions.ChassisNumberGenerationException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
-
 import java.security.SecureRandom;
 import java.util.Random;
 
@@ -13,7 +13,7 @@ public class ChassisNumberGenerator {
 
     private static final String ALPHANUMERIC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     private static final int LENGTH = 12;
-    private final IVehicleRepository vehicleRepository;
+    private static final int MAX_ATTEMPTS = 10;
 
     private final Random random = new SecureRandom();
 
@@ -28,11 +28,26 @@ public class ChassisNumberGenerator {
         return sb.toString();
     }
 
-    public String generateUniqueChasisNumber(){
-        String chassisNumber;
-        do{
-            chassisNumber = generateChassisNumber();
-        } while (vehicleRepository.existsByChassisNumber(chassisNumber));
-        return chassisNumber;
+    /**
+     * Attempts to generate a unique chassis number, retries if the DB throws DataIntegrityViolationException.
+     * Your service layer should call this and handle exceptions.
+     */
+    public String generateUniqueChassisNumberWithRetries(VehicleSaver vehicleSaver) {
+        int attempts = 0;
+        while (attempts < MAX_ATTEMPTS) {
+            String chassisNumber = generateChassisNumber();
+            try {
+                vehicleSaver.saveWithChassisNumber(chassisNumber);
+                return chassisNumber;
+            } catch (DataIntegrityViolationException e) {
+                attempts++;
+            }
+        }
+        throw new ChassisNumberGenerationException("Failed to generate a unique chassis number after " + MAX_ATTEMPTS + " attempts");
+    }
+
+    @FunctionalInterface
+    public interface VehicleSaver {
+        void saveWithChassisNumber(String chassisNumber) throws DataIntegrityViolationException;
     }
 }

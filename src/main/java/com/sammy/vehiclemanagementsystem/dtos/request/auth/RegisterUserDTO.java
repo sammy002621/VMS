@@ -1,9 +1,9 @@
 package com.sammy.vehiclemanagementsystem.dtos.request.auth;
 
 
-import com.sammy.vehiclemanagementsystem.annotations.nationalID.ValidNationalID;
-import com.sammy.vehiclemanagementsystem.annotations.password.ValidPassword;
-import com.sammy.vehiclemanagementsystem.annotations.phone.ValidRwandanPhone;
+import com.sammy.vehiclemanagementsystem.annotations.user.nationalID.ValidNationalID;
+import com.sammy.vehiclemanagementsystem.annotations.user.password.ValidPassword;
+import com.sammy.vehiclemanagementsystem.annotations.user.phone.ValidRwandanPhone;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

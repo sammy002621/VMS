@@ -1,4 +1,4 @@
-package com.sammy.vehiclemanagementsystem.annotations.password;
+package com.sammy.vehiclemanagementsystem.annotations.user.password;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

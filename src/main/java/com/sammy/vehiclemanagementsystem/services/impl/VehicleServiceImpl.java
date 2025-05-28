@@ -63,19 +63,19 @@ public class VehicleServiceImpl implements IVehicleService {
 
 
             Vehicle vehicle = Mapper.getMapper().map(dto, Vehicle.class);
-            System.out.println("Vehicle details : " + vehicle);
-            String chassisNumber = chassisNumberGenerator.generateUniqueChasisNumber();
 
-            vehicle.setChassisNumber(chassisNumber);
-            vehicle.setOwner(owner);
-            vehicle.setCurrentPlate(plateNumber);
+            chassisNumberGenerator.generateUniqueChassisNumberWithRetries(chassisNumber -> {
+                vehicle.setChassisNumber(chassisNumber);
+                vehicle.setOwner(owner);
+                vehicle.setCurrentPlate(plateNumber);
+                vehicleRepository.save(vehicle);
+            });
 
-            vehicle = vehicleRepository.save(vehicle);
 
             plateNumber.setPlateStatus(EPlateStatus.IN_USE);
             plateNumberRepository.save(plateNumber);
 
-
+// after vehicle is created  ownership record of the vehicle is recorded
             OwnershipRecord ownershipRecord = OwnershipRecord.builder()
                     .vehicle(vehicle)
                     .owner(owner)

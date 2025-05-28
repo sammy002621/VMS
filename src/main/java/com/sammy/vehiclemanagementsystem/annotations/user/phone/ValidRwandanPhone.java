@@ -1,4 +1,4 @@
-package com.sammy.vehiclemanagementsystem.annotations.phone;
+package com.sammy.vehiclemanagementsystem.annotations.user.phone;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

@@ -1,5 +1,6 @@
-package com.sammy.vehiclemanagementsystem.annotations.nationalID;
+package com.sammy.vehiclemanagementsystem.annotations.user.nationalID;
 
+import com.sammy.vehiclemanagementsystem.annotations.user.nationalID.NationalIDValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 

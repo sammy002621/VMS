@@ -41,7 +41,7 @@ public class EmailService {
         }
 
         variables.put("username", username);
-        variables.put("supportEmail", "contact@nzabera.com");
+        variables.put("supportEmail", "contact@sammy.com");
         variables.put("currentYear", LocalDate.now().getYear());
 
         Context context = new Context();

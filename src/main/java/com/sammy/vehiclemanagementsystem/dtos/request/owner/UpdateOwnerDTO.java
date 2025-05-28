@@ -1,6 +1,6 @@
 package com.sammy.vehiclemanagementsystem.dtos.request.owner;
 
-import com.sammy.vehiclemanagementsystem.annotations.phone.ValidRwandanPhone;
+import com.sammy.vehiclemanagementsystem.annotations.user.phone.ValidRwandanPhone;
 import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.Setter;

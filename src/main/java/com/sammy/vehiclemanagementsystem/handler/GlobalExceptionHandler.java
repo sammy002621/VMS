@@ -1,5 +1,6 @@
 package com.sammy.vehiclemanagementsystem.handler;
 
+import com.sammy.vehiclemanagementsystem.exceptions.ChassisNumberGenerationException;
 import com.sammy.vehiclemanagementsystem.exceptions.OperationNotPermittedException;
 import com.sammy.vehiclemanagementsystem.payload.ApiResponse;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -108,4 +109,14 @@ public class GlobalExceptionHandler {
                 e.getMessage()
         );
     }
+
+    @ExceptionHandler(ChassisNumberGenerationException.class)
+    public ResponseEntity<ApiResponse<Object>> handleChassisNumberGenerationException(ChassisNumberGenerationException ex) {
+        return ApiResponse.fail(
+                "Failed to generate a unique chassis number",
+                INTERNAL_SERVER_ERROR,
+                ex.getMessage()
+        );
+    }
+
 }
