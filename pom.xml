@@ -9,10 +9,10 @@
         <relativePath/>
     </parent>
     <groupId>com.sammy</groupId>
-    <artifactId>VehicleManagementSystem</artifactId>
+    <artifactId>EnterpriseResourcePlanning</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>VehicleManagementSystem</name>
-    <description>VehicleManagementSystem</description>
+    <name>EnterpriseResourcePlanning</name>
+    <description>EnterpriseResourcePlanning</description>
     <url/>
     <licenses>
         <license/>
@@ -129,6 +129,17 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.xhtmlrenderer</groupId>
+            <artifactId>flying-saucer-pdf</artifactId>
+            <version>9.1.22</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>2.1.7</version>
         </dependency>
     </dependencies>
 
